@@ -27,7 +27,7 @@ Here are some screenshots of the work done:
 
 ### Installation 
 
-You can see in this [commit](https://github.com/Grasia/teem/pull/380/commits/997258f2b85d98bdc1207792d0f0296eb0189308#diff-12f0222a60ecdccbafce925ddac9500dR18) that I have added the docker repo in the config file for docker-compose. So, it should pull itself automatically.
+You can see in this [commit](https://github.com/Grasia/teem/pull/380/commits/997258f2b85d98bdc1207792d0f0296eb0189308#diff-12f0222a60ecdccbafce925ddac9500dR18) that I have added the docker repo in the config file for docker-compose. So, it should pull itself automatically when you will run docker-compose.
 
 
 ### Issues and further development
