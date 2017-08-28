@@ -29,26 +29,60 @@ We all are aware of the [contextual link previews](https://meetedgar.com/blog/fa
 
 The entire part seemed to be very interesting and at the same time allowed me to explore a good part of the codebase. I basically implemented a separate node server which did all the talking between the third party webpage link and Teem.
 
+To get a quick look and understanding of how things work here, we can see take a look at the below image:
+
+![Contextual Link preview working](https://camo.githubusercontent.com/45fc87dd4604deb291820ae1e68f3b8cadc320ec/687474703a2f2f6b727368756268616d2e6769746875622e696f2f696d616765732f5465656d2d6c696e6b2d707265766965772d776f726b696e672e706e67 "Working of contextual link previews")
+
+#### Explanation:
++ The communication starts with the `mouseover` event fired by the link annotation. The program picks up the `href` of the highlighted link annotation and makes a post request to the Teem-link-preview server asking for the meta content of the link.
++ The link-preview server gets the request, extracts the url from the request body and does further processing to extract the meta content from the link by making a post request to the server url and [**crawling**](https://en.wikipedia.org/wiki/Web_crawler) over whatever data it gets in order to send the results back to the Teem Client.
+
+*The term* **crawling** *is of particular importance becuase its the only thing on which the second goal of my proposal depends. The thing to be noticed is that we  only made a post request and did not provide the third party application to execute its javascript! More info about this in the below paragraphs*
+
+
 **The full source code of the teem-link-preview server can be seen [here](https://github.com/krshubham/teem-link-preview)**
 
 #### Pull Request:
 + [**Link Popovers Added**](https://github.com/Grasia/teem/pull/380)
 
+#### Further extension in contextual link previews:
++ We would like to have a **cache** for the pages that we have already included in our Teems in the form of links, so that next time when we hover on a link, we get to see its preview without making any request to the third party website.
+
++ Better UI for the link preview popover and also better use of text weight and design properties to make it look better!
+
+#### Results obtained
+![Loading](https://files.gitter.im/krshubham/98TS/image.png "loading the preview")
+![Martin Garrix - There for you](https://files.gitter.im/P2Pvalue/teem/xcrR/image.png "The preview loaded with the content")
+
 ## Better SEO indexing
 Another major goal of my proposal was to improve the indexing of Teem webpages also at the same time provide rich meta data content to other external link preview bots from Facebook, Twitter, Telegram etc.
-This was one part of the summer which took quite a lot of time which I didn't think that it would take. It was not very straightforward, given how Teem application works, to improve fetching meta data content for crawlers. We know how javascript based web pages cannot render any dynamic content until they are allowed to execute JavaScript. This is the case that happens when a crawler hits a web page. It doesn't execute javascript and well not to our astonishment 😝, the crawler gets greeted by `{{hello}}`. An illustration of the given problem is below:
+This was one part of the summer which took quite a lot of time which I didn't think that it would take. It was not very straightforward, given how Teem application works, to improve fetching meta data content for crawlers. We know how javascript based web pages cannot render any dynamic content until they are allowed to execute JavaScript. To get more info on this look at the image below from gnusocial featuring my mentor,Antonio, you can see the meta data is `{{:: og.title}}` and the description is ``{{:: og.description}}``. This happened because AngularJs uses these curly braces to understand that I have to output  a value represented by the variable wrapped in between,but wait, we didn't allow any javascript execution, thus the curly braces remained as it is  .This is the case that happens when a crawler hits a web page. It doesn't execute javascript and well not to our astonishment 😝, the crawler gets greeted by `{{hello}}`. An illustration of the given problem is below:
 
 ![Curly braces in gnusocial](https://cloud.githubusercontent.com/assets/7475584/20716845/e8d629c0-b653-11e6-9834-dc778bee88e4.png "When a browser is unable to run javascript")
 
-Those unescaped double curly braces, render the data contained in the variable named hello and in order to get that value we need javascript to be executed. Thus the solution needed to be something like the page should be generated on-the-fly by a server and be given to the crawler. I followed a somewhat similar approach in order to achieve this. But we went through lots of discussions on this. Somedays, we had our(me and Antonio) calls for 1 hour in order to discuss the problems and their solution. Again, without him giving in the thoughts it would be very tough to achieve what we had done together.
+Those unescaped double curly braces, render the data contained in the variable named hello and in order to get that value we need javascript to be executed.
+Thus the solution needed to be something like the page should be generated on-the-fly by a server and be given to the crawler. I followed a somewhat similar approach in order to achieve this. But we went through lots of discussions on this. Somedays, we had our(me and Antonio) calls for 1 hour in order to discuss the problems and their solution. Again, without him giving in the thoughts it would be very tough to achieve what we had done together.
 
 ### How it looks on whatsapp now:
-![Working fine now]()
+![Working fine now](https://raw.githubusercontent.com/krshubham/Teem-GSoC/master/diagrams/working-link-preview.png "Now no curly braces")
 
 #### Submitted work
 The whole part of the work done in the server that I implemented for my first task and all the contributions were done in [this](https://github.com/krshubham/teem-link-preview) repository.
 
+#### Brief info on how it works
+- We basically have a `nginx.conf` file which allows us to look for the HTTP User Agent that is fetching our site.
+
+- Based on this filtering we redirect the user agent to another port where it gets a copy of `index.html` with the available `og:tags`!
+
+- When some bot tries to visit our website we simply redirect it to the teem-link-preview server.
+
+- We now query the SwellRT server for the required metadata and get the results back from it!
+
 **Also in order to have a better look on what I did, head over to [this](https://github.com/krshubham/Teem-GSoC/blob/master/Teem_SEO_handling.md) place**
+
+#### Further extensions in future
++ It would be better if SwellRT supports this functionality out of the box! What I mean to say that instead of relying on another server for generating the HTML , we can have SwellRT support some REST api's for allowing the crawler to get the data regarding the teem!
+
 
 ## Trello with Teem
 This was again one of the most interesting and challenging part of my project. Due to unavailability of certain features in SwellRT, we cannot do it 100 percent but I'd be very glad in order to make you understand what was the situation that we were in.

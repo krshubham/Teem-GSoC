@@ -4,10 +4,13 @@ Teem is entirely based on AngularJs `1.x` and thus much like other javascript ba
 
 ### What we do:
 
-- We basically have a `nginx.conf` file which allows us to look for the HTTP User Agent that is fetching ou site.
+- We basically have a `nginx.conf` file which allows us to look for the HTTP User Agent that is fetching our site.
 
 - Based on this filtering we redirect the user agent to another port where it gets a copy of `index.html` with the available `og:tags`!
 
+- When some bot tries to visit our website we simply redirect it to the teem-link-preview server.
+
+- We now query the SwellRT server for the required metadata and get the results back from it!
 
 
 ### Fetching the [OpenGraph](http://ogp.me) meta data
