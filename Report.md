@@ -94,6 +94,13 @@ Now one fine day I was working on Trello and updated a need there. I opened Teem
 
 After reading this answer, I came to know that there is some gap between how Teem and Trello API communicate and how Teem and SwellRT communicate, thus this is the major difference which stopped me from completing 100 percent of this part! 
 
+#### Details about given problems and accomplishments:
++ We have two communication directions in our application:
+	+  Teem to Trello 
+	+  Trello to Teem
+
++  Let's first see some more details about the Trello to Teem
+
 For more info on the technical side of this story follow these links:
 
 + [Teem-Trello-part-1](https://github.com/krshubham/Teem-GSoC/blob/master/teem_with_trello_1.md)
@@ -110,6 +117,7 @@ For more info on the technical side of this story follow these links:
 ## Next steps:
 * Since I was not able to completely work on integrating Teem with Trello, I'd like to be in touch with further enhancements that SwellRT makes towards making its API available in non browser environments.
 * Working on to fix some small issues in Teem. I would really like to reduce the number of issues and the issues that are easy to fix.
+* It would be great to see the extension of Teem with other apps like Telegram in order to have a seamless collaborative environment where the users can feel connected without jumping from one application to another.
 
 ## Concluding thoughts
 It was really fun working this summer on such an interesting and thrilling project. Thanks to my mentor, Antonio, Berkman Klein Center, Harvard University and Google Summer of Code 2017 for giving me the opportunity to participate this summer and spend my summer doing some meaningful work!

@@ -4,7 +4,7 @@ This is the part that I had done for the first evaluation portion of the Google 
 
 **Goal**: To add the functionality for contextual link preview in the teem pad
 
-###Implementation steps
+### Implementation steps
 
 + Firstly we have a docker container that houses the server which does all the processing to bring the contextual link previews. The main file that handles all these things is: [here](https://github.com/krshubham/teem-link-preview/blob/master/src/routes/fetch.js)
 
