@@ -12,7 +12,7 @@ This is the part that I had done for the first evaluation portion of the Google 
 
 ![Working of link previews](http://krshubham.github.io/images/Teem-link-preview-working.png "working of teem link preview") 
 
-+ After seeing the image I hope that everything is clear. Here is the PR for the work that I have done: [PR#380] (https://github.com/Grasia/teem/pull/380)
++ After seeing the image I hope that everything is clear. Here is the PR for the work that I have done: [PR#380](https://github.com/Grasia/teem/pull/380)
 
 
 + Blog post: [Gsoc-Part-1](http://krshubham.github.io/blog/2017/06/29/GSoC-part-1/)
@@ -22,7 +22,7 @@ Here are some screenshots of the work done:
 
 ![Loading the preview](https://krshubham.github.io/images/gsoc-part-1_2.png "loading the preview")
 
-![The preview] (https://krshubham.github.io/images/gsoc-part-1_1.png "preview is ready")
+![The preview](https://krshubham.github.io/images/gsoc-part-1_1.png "preview is ready")
 
 
 ### Installation 
